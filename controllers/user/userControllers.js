@@ -38,11 +38,10 @@ const consultarOCrearUsuario = async (req, callback) => {
       user.rol = 'sin rol';
       user.estado = 'pendiente';
       await crearUsuario(user, (err, respuesta) => callback(err, user));
+        console.log('respuesta creacion', respuesta);
     }
   });
 };
-
-
 
 const editarUsuario = async (productId, data, callback) => {
     const filtroUsuario = { _id: new ObjectId(productId) };

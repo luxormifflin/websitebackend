@@ -5,6 +5,7 @@ import {
     editarUsuario,
     eliminarUsuario,
     consultarUsuario,
+    consultarOCrearUsuario,
 } from '../../controllers/user/userControllers.js';
 
 const rutasUsuario = Express.Router();

@@ -12,6 +12,7 @@ import jwks from 'jwks-rsa';
 import rutasProducto from './views/product/routes.js';
 import rutasUsuario from './views/user/routes.js';
 import rutasVenta from './views/sale/routes.js';
+import autorizacionEstadoUsuario from './middleware/autorizacionEstadoUsuario.js';
 
 dotenv.config({ path: './.env' });
 
@@ -35,6 +36,8 @@ var jwtCheck = jwt({
 
 //4 y 5 enviarle el token a auth0 para que devuelva si es valido o no
 app.use(jwtCheck);
+
+app.use(autorizacionEstadoUsuario);
 
 app.use(rutasProducto);
 app.use(rutasUsuario);
