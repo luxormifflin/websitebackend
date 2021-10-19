@@ -5,13 +5,14 @@
 import dotenv from 'dotenv';
 import Express from 'express';
 import Cors from 'cors';
-import { connectServer } from './db/db.js';
+import { conectarBD } from './db/db.js';
 import jwt from 'express-jwt';
 import jwks from 'jwks-rsa';
 
 import rutasProducto from './views/product/routes.js';
 import rutasUsuario from './views/user/routes.js';
 import rutasVenta from './views/sale/routes.js';
+import autorizacionEstadoUsuario from './middleware/autorizacionEstadoUsuario.js';
 
 dotenv.config({ path: './.env' });
 
@@ -34,6 +35,8 @@ var jwtCheck = jwt({
 
 app.use(jwtCheck);
 
+app.use(autorizacionEstadoUsuario);
+
 app.use(rutasProducto);
 app.use(rutasUsuario);
 app.use(rutasVenta);
@@ -44,4 +47,4 @@ const main = () => {
     });
 };
 
-connectServer(main);
+conectarBD(main);

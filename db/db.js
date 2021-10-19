@@ -12,7 +12,7 @@ const client = new MongoClient(stringConexion, {
 
 let baseDeDatos;
 
-const connectServer = (callback) => {
+const conectarBD = (callback) => {
     client.connect((err, db) => {
         if (err) {
             console.error('Error conectando a la base de datos');
@@ -28,4 +28,4 @@ const getDB = () => {
     return baseDeDatos;
 };
 
-export { connectServer, getDB };
+export { conectarBD, getDB };
