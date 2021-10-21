@@ -22,7 +22,9 @@ const autorizacionEstadoUsuario = async (req, res, next) =>{
         console.log('habilitado');
         // paso 5: si el usuario está pendiente o habilitado, ejecutar next()
         next();
-      }
+      } 
+    }else{
+        next(); 
     }
   });
 };
