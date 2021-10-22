@@ -43,7 +43,7 @@ const consultarOCrearUsuario = async (req, callback) => {
     });
 };
 
-const editarUsuario = async (id, data, callback) => {
+const editarUsuario = async (id, edicion, callback) => {
     const filtroUsuario = { _id: new ObjectId(id) };
     const operacion = {
         $set: edicion,
