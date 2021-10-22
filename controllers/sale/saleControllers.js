@@ -16,22 +16,22 @@ const consultarVenta = async (id, callback) => {
     await baseDeDatos.collection('venta').findOne({ _id: new ObjectId(id) }, callback);
 };
 
-const editarVenta = async (id, edicion, callback) => {
-    const filtroVenta = { _id: new ObjectId(id) };
+const editarVenta = async (productId, data, callback) => {
+    const filtroUsuario = { _id: new ObjectId(productId) };
     const operacion = {
-        $set: edicion,
+        $set: data,
 };
 
     const baseDeDatos = getDB();
     await baseDeDatos
         .collection('venta')
-        .findOneAndUpdate(filtroVenta, operacion, { upsert: true, returnOriginal: true }, callback);
+        .findOneAndUpdate(filtroUsuario, operacion, { upsert: true, returnOriginal: true }, callback);
 };
 
-const eliminarVenta = async (id, callback) => {
-    const filtroVenta = { _id: new ObjectId(id) };
+const eliminarVenta = async (productId, callback) => {
+    const filtroUsuario = { _id: new ObjectId(productId) };
     const baseDeDatos = getDB();
-    await baseDeDatos.collection('venta').deleteOne(filtroVenta, callback);
+    await baseDeDatos.collection('venta').deleteOne(filtroUsuario, callback);
 };
 
 export { queryAllSales, crearVenta, consultarVenta, editarVenta, eliminarVenta };
