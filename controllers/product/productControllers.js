@@ -30,8 +30,13 @@ const editarProducto = async (id, edicion, callback) => {
     const filtroProducto = { _id: new ObjectId(id) };
     const operacion = {
         $set: edicion,
+
     };
     const baseDeDatos = getDB();
+    console.log('filtro producto', filtroProducto);
+    console.log('operación', operacion);
+    console.log('edición', edicion);
+
     await baseDeDatos
         .collection('producto')
         .findOneAndUpdate(filtroProducto, operacion, { upsert: true, returnOriginal: true }, callback);
