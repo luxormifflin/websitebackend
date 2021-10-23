@@ -5,7 +5,7 @@ import jwt_decode from 'jwt-decode';
 const queryAllUsers = async (callback) => {
     const baseDeDatos = getDB();
     console.log('query');
-    await baseDeDatos.collection('usuario').find().limit(50).toArray(callback);
+    await baseDeDatos.collection('usuario').find({}).limit(50).toArray(callback);
 };
 
 const crearUsuario = async (datosUsuario, callback) => {
@@ -43,10 +43,10 @@ const consultarOCrearUsuario = async (req, callback) => {
   });
 };
 
-const editarUsuario = async (productId, data, callback) => {
-    const filtroUsuario = { _id: new ObjectId(productId) };
+const editarUsuario = async (id, edicion, callback) => {
+    const filtroUsuario = { _id: new ObjectId(id) };
     const operacion = {
-        $set: data,
+        $set: edicion,
     };
     const baseDeDatos = getDB();
     await baseDeDatos
@@ -54,10 +54,17 @@ const editarUsuario = async (productId, data, callback) => {
         .findOneAndUpdate(filtroUsuario, operacion, { upsert: true, returnOriginal: true }, callback);
 };
 
-const eliminarUsuario = async (productId, callback) => {
-    const filtroUsuario = { _id: new ObjectId(productId) };
+const eliminarUsuario = async (id, callback) => {
+    const filtroUsuario = { _id: new ObjectId(id) };
     const baseDeDatos = getDB();
     await baseDeDatos.collection('usuario').deleteOne(filtroUsuario, callback);
 };
 
-export { queryAllUsers, consultarUsuario, crearUsuario, editarUsuario, eliminarUsuario, consultarOCrearUsuario};
+export { 
+  queryAllUsers, 
+  consultarUsuario, 
+  crearUsuario, 
+  editarUsuario, 
+  eliminarUsuario, 
+  consultarOCrearUsuario,
+};

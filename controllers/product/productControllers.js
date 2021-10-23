@@ -3,7 +3,7 @@ import { ObjectId } from 'mongodb';
 
 const queryAllProducts = async (callback) => {
     const baseDeDatos = getDB();
-    await baseDeDatos.collection('producto').find().limit(50).toArray(callback);
+    await baseDeDatos.collection('producto').find({}).limit(50).toArray(callback);
 };
 
 const crearProducto = async (datosProducto, callback) => {

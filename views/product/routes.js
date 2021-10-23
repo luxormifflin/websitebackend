@@ -11,7 +11,8 @@ const rutasProducto = Express.Router();
 
 const genericCallback = (res) => (err, result) => {
     if (err) {
-        res.status(500).send('Error consultando los productos');
+        console.log('error', err);
+        res.status(500).json({error: err});
     } else {
         res.json(result);
     }
