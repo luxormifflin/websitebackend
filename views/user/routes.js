@@ -39,7 +39,10 @@ rutasUsuario.route('/usuarios/:id').get((req, res) => {
 });
 
 rutasUsuario.route('/usuarios/:id').patch((req, res) => {
+    console.log(req.params)
+    console.log(req.body)
     editarUsuario(req.params.id, req.body, genercCallback(res));
+
 });
 
 rutasUsuario.route('/usuarios/:id').delete((req, res) => {

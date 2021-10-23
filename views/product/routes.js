@@ -17,6 +17,8 @@ const genericCallback = (res) => (err, result) => {
     }
 };
 
+//productos
+
 rutasProducto.route('/productos').get((req, res) => {
     console.log('alguien hizo get en la ruta /productos')
     queryAllProducts(genericCallback(res));
@@ -32,11 +34,15 @@ rutasProducto.route('/productos/:id').get((req, res) => {
 });
 
 rutasProducto.route('/productos/:id').patch((req, res) => {
+    console.log('request', req)//acá está llegando vacío al body, pero en front end el patch si llega con la info
     editarProducto(req.params.id, req.body, genericCallback(res));
 });
 
 rutasProducto.route('/productos/:id').delete((req, res) => {
     eliminarProducto(req.params.id, genericCallback(res));
 });
+
+
+
 
 export default rutasProducto;
